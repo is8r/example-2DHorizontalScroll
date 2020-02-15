@@ -52,7 +52,7 @@ public class Uribo : MonoBehaviour
         rb2D.velocity = new Vector2(hori * speed, rb2D.velocity.y);
 
         //上ボタンが押された時、地面に接地していたらジャンプする
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded())
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && isGrounded())
         {
             //Rigidbody2Dに力を加える
             rb2D.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
@@ -69,7 +69,7 @@ public class Uribo : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, layLength, groundLayer);
 
         //Rayを可視化
-        //Debug.DrawRay(transform.position, new Vector3(0, -layLength, 0), Color.blue, 1);
+        Debug.DrawRay(transform.position, new Vector3(0, -layLength, 0), Color.blue, 1);
 
         //接地しているかどうかを返す
         if (hit)
